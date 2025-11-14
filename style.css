@@ -98,3 +98,45 @@ body {
 #project-carousel.active {
     cursor: grabbing;
 }
+
+
+/* --- MOBILE FIX: HEADER CONTACT BAR (Fixes Overlapping on Small Screens) --- */
+/* Target screens up to 768px (standard Tailwind md: breakpoint) */
+@media (max-width: 768px) { 
+    
+    /* This targets the main content div inside the fixed header 
+       (class="max-w-7xl mx-auto flex justify-between items-center") 
+    */
+    .max-w-7xl.mx-auto.flex {
+        /* Force content to stack vertically */
+        flex-direction: column; 
+        align-items: flex-start; /* Align content to the left */
+        padding-top: 10px; 
+        padding-bottom: 10px; 
+    }
+
+    /* This targets the contact links (email, phone, LinkedIn) container 
+       (div class="flex space-x-6 text-sm")
+    */
+    .max-w-7xl.mx-auto.flex > div:first-child { 
+        /* Reset flex behavior for this container to stack/wrap nicely */
+        display: flex;
+        flex-wrap: wrap; /* Allows links to wrap if space is tight */
+        margin-bottom: 10px; /* Add space between links and button */
+        width: 100%; /* Ensure it spans full width */
+        justify-content: space-between; /* Spread links out slightly */
+    }
+
+    /* Adjust text size and spacing for contact links on mobile */
+    .max-w-7xl.mx-auto.flex > div:first-child a {
+        font-size: 0.875rem; /* Equivalent to Tailwind text-sm */
+        margin-bottom: 5px; /* Add slight vertical spacing between links */
+    }
+
+    /* Ensure the Download button is easily clickable at full width */
+    .max-w-7xl.mx-auto.flex > a:last-child {
+        width: 100%; /* Force button to full width of the container */
+        text-align: center;
+        justify-content: center; /* Center content (icon and text) */
+    }
+}
